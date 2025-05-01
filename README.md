@@ -1,6 +1,6 @@
 # 🐻 BearCoin – A Tiny Blockchain in C
 
-![BearCoin](./assets/bear_coin.png)
+![BearCoin](./assets/bearcoin.PNG)
 
 **BearCoin** is a reference blockchain implemented in C and Python with ultra-low proof-of-work, SHA256 hashing, RSA-signed transactions, and a GitHub Actions-powered miner that mines a new block daily.
 
