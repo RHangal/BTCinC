@@ -90,7 +90,8 @@ block_explorer.py can be used to output block contents in human readable format
 python3 block_explorer.py block/block_03.bin
 ```
 
-📦 Block File: block_03.bin
+### 📦 Block File: block_03.bin
+
 ├─ Previous Hash: ...
 ├─ Merkle Root: ...
 ├─ Difficulty: 1
