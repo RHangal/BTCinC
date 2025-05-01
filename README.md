@@ -92,15 +92,15 @@ python3 block_explorer.py block/block_03.bin
 
 ### 📦 Block File: block_03.bin
 
-├─ Previous Hash: ...
-├─ Merkle Root: ...
-├─ Difficulty: 1
-├─ Timestamp: 1714531200
-├─ Nonce: 287
-├─ Transactions: 3
-└─ Contents:
-[0] 'Bear pays Shadow 50 coins'
-Signature (240 bytes): abc123...
+- Previous Hash: ...
+- Merkle Root: ...
+- Difficulty: 1
+- Timestamp: 1714531200
+- Nonce: 287
+- Transactions: 3
+- Contents:
+  'Bear pays Shadow 50 coins'
+  Signature (240 bytes): abc123...
 
 ### 🧠 Design Notes
 
