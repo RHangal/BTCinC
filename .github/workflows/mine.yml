@@ -26,6 +26,10 @@ jobs:
       - name: ⛏️ Run mining script
         run: python3 mine_new_block.py
 
+      - name: 🕒 Generate timestamp
+        id: timestamp
+        run: echo "time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$GITHUB_OUTPUT"
+
       - name: 🧼 Configure Git
         run: |
           git config user.name "github-actions"
