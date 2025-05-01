@@ -2,41 +2,42 @@ name: Mine New Block
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-  workflow_dispatch:     # Also allows manual triggering
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  workflow_dispatch: # Also allows manual triggering
 
 jobs:
   mine:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout repo
-      uses: actions/checkout@v3
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v3
 
-    - name: 🧰 Install dependencies
-      run: |
-        sudo apt update
-        sudo apt install -y build-essential libssl-dev libgmp-dev python3
+      - name: 🧰 Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential libssl-dev libgmp-dev python3
 
-    - name: 🏗️ Build C tools
-      run: |
-        make clean
-        make
+      - name: 🏗️ Build C tools
+        run: |
+          make clean
+          make
 
-    - name: ⛏️ Run mining script
-      run: python3 mine_new_block.py
+      - name: ⛏️ Run mining script
+        run: python3 mine_new_block.py
 
-    - name: 🧼 Configure Git
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
+      - name: 🧼 Configure Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
 
-    - name: ✅ Commit mined block
-      run: |
-        git add .
-        git commit -m "🤖 Mined new block on $(date -u +"%Y-%m-%dT%H:%M:%SZ")" || echo "No changes to commit"
-        git push
-      env:
-        # Required for authentication when pushing back to the repo
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+          git add .
+          git commit -m "🤖 Mined new block on ${{ steps.timestamp.outputs.time }}"
+          git push origin HEAD:${{ github.ref_name }}
