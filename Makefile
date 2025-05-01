@@ -6,7 +6,7 @@ TOOLS = sha txt_to_bin rsa merkle verify_block
 all: $(TOOLS)
 
 sha: sha.c
-	$(CC) sha.c -o sha
+	$(CC) sha256.c -o sha
 
 txt_to_bin: txt_to_bin.c
 	$(CC) txt_to_bin.c -o txt_to_bin
