@@ -5,13 +5,13 @@ TOOLS = sha txt_to_bin rsa merkle verify_block
 
 all: $(TOOLS)
 
-sha: sha.c
+sha: sha256.c
 	$(CC) sha256.c -o sha
 
 txt_to_bin: txt_to_bin.c
 	$(CC) txt_to_bin.c -o txt_to_bin
 
-rsa: rsa.c
+rsa: bigrsa.c
 	$(CC) bigrsa.c biggmp.c -o rsa -lgmp
 
 merkle: merkle.c
