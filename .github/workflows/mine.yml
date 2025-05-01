@@ -30,6 +30,15 @@ jobs:
         id: timestamp
         run: echo "time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$GITHUB_OUTPUT"
 
+      - name: 🔍 Debug GH_PAT presence
+        run: |
+          if [ -z "${{ secrets.GH_PAT }}" ]; then
+            echo "❌ GH_PAT is NOT set!"
+            exit 1
+          else
+            echo "✅ GH_PAT is set!"
+          fi
+
       - name: 🧼 Configure Git
         run: |
           git config user.name "github-actions"
