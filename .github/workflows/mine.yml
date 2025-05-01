@@ -36,12 +36,10 @@ jobs:
           git config user.email "github-actions@github.com"
 
       - name: Push changes
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "github-actions[bot]"
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}
           git add .
-          git commit -m "🤖 Mined new block on ${{ steps.timestamp.outputs.time }}"
+          git commit -m "🤖 Mined new block on $(date -u +'%Y-%m-%dT%H:%M:%SZ')" || echo "No changes to commit"
           git push origin HEAD:${{ github.ref_name }}
