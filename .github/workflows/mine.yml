@@ -19,8 +19,9 @@ jobs:
         sudo apt install -y build-essential libssl-dev libgmp-dev python3
 
     - name: 🏗️ Build C tools
-      run: make clean
-      run: make
+      run: |
+        make clean
+        make
 
     - name: ⛏️ Run mining script
       run: python3 mine_new_block.py
